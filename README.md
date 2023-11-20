@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# Project Title
+EchoLingo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+EchoLingo is a cutting-edge multilingual virtual assistant designed to facilitate seamless communication and information access across multiple languages. By leveraging advanced speech-to-text and conversational AI technologies, EchoLingo aims to break down language barriers, offering users an intuitive and responsive platform for cross-lingual interactions.
 
-In the project directory, you can run:
+### Problem
 
-### `npm start`
+In our increasingly interconnected world, the need for effective multilingual communication tools is paramount. Traditional text-based translators or assistants often struggle with the nuances of spoken language, leading to miscommunication. EchoLingo addresses this by providing real-time, accurate voice translation and responses, enhancing understanding and engagement in diverse linguistic contexts.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### User Profile
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+EchoLingo targets a broad user base, including international travelers, expatriates, multilingual families, and businesses with a global clientele. Users can interact with the assistant to obtain information, perform tasks, or learn languages, all in their preferred language. Special considerations include ensuring cultural sensitivity and accommodating various dialects and accents.
 
-### `npm test`
+### Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Voice-Activated Commands: Users can speak to EchoLingo in their native language to perform various tasks.
+Real-Time Translation: Instant translation of spoken language into the user's chosen language.
+Information Retrieval: Answering questions and providing information based on user queries.
+Multilingual Support: Support for multiple languages, with easy switching between them.
+Personalization: Learning user preferences and customizing responses accordingly.
 
-### `npm run build`
+## Implementation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Frontend: React for building a dynamic, user-friendly interface.
+Backend: Node.js with Express for robust server-side functionality.
+Database: MySQL for data storage, with Knex.js as a query builder to simplify database operations.
+Authentication: Passport.js for secure user authentication and session management.
+Libraries: Axios, Sass, UUID, Nodemon, Cors, Dotenv, Knex, MySQL
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### APIs
 
-### `npm run eject`
+Whisper API: For accurate speech-to-text conversion.
+ChatGPT API: To generate intelligent and contextually appropriate text responses.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Sitemap
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Sign In & Sign Up: Initial page upon launch for authorization and authentication. 
+Home Page: Introduction to EchoLingo and its capabilities.
+User Dashboard: Personalized user space to manage settings and view interaction history.
+Language Settings: Where users can select and manage their preferred languages.
+Help and Support: Resources for user assistance and FAQs.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Mockups
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Provide visuals of your app's screens. You can use tools like Figma or pictures of hand-drawn sketches.
 
-## Learn More
+### Data
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+User Profiles: Information about users, including language preferences and interaction history.
+Interaction Logs: Records of user interactions with EchoLingo for improving personalization.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Endpoints
 
-### Code Splitting
+/api/users: For user management (GET, POST, PUT).
+/api/translations: To handle translation requests (POST).
+/api/auth: For handling authentication (POST for login, GET for logout).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Auth
 
-### Analyzing the Bundle Size
+Using Passport.js, EchoLingo will implement secure authentication for user accounts. This includes login, logout, and session management, ensuring user data privacy and security.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Roadmap
 
-### Making a Progressive Web App
+# November 16-17: Project Setup
+Initialize the project structure.
+Set up the React frontend and Node.js backend with Express.
+Configure Passport.js for authentication.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# November 18-20: Basic Functionality
+Develop basic frontend interface with React.
+Implement simple backend logic for user registration and login.
+Set up MySQL database with Knex.js and create basic schemas (e.g., users, interactions).
 
-### Advanced Configuration
+# November 21-22: API Integration
+Integrate Whisper API for speech-to-text functionality.
+Integrate ChatGPT API for generating responses.
+Test API integrations with basic use cases.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# November 23-24: Core Features Development
+Implement the core features like real-time translation and voice-activated commands.
+Enhance user dashboard for language settings and interaction history.
 
-### Deployment
+# November 25-26: Testing and Refinement
+Conduct thorough testing of all functionalities.
+Refine the user interface based on test feedback.
+Debug and fix any identified issues.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# November 27-28: Finalization and Documentation
+Make final adjustments based on testing.
+Prepare comprehensive documentation for the application.
+Deploy the application to a suitable hosting platform.
 
-### `npm run build` fails to minify
+## Nice-to-haves
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Voice Customization: Options for different voice types and accents for the assistant.
+Offline Functionality: Basic offline capabilities for essential functions.
+Advanced Analytics: Detailed analytics of user interactions for enhanced personalization.
+Community Forum: A platform for users to share tips and language learning resources.
