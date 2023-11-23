@@ -37,22 +37,6 @@ function LoginPage() {
     return(
         <>
             <Auth />
-
-            <div>
-                {/* for this app, inputs would be user who is logged in and translations from a given seession
-                IF saved */}
-                <input></input>
-                <input></input>
-            </div>
-
-            <div>
-                {transcripts.map((transcript) => (
-                <div>
-                    <h1>{transcript.fromUser}</h1>
-                    <p>{transcript.conversation}</p>
-                </div>
-                ))}
-            </div>
         </>
     )
 }
