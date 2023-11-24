@@ -1,0 +1,26 @@
+.auth {
+    &__signup, &__signin {
+        margin-bottom: 20px;
+
+        & .auth__input {
+            margin: 10px 0;
+        }
+
+        & .auth__button {
+            margin-top: 10px;
+        }
+    }
+
+    &__button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+
+        &--google {
+            background-color: #4285F4;
+            color: white;
+        }
+    }
+}

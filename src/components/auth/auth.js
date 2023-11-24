@@ -1,44 +1,113 @@
-import { auth, googleProvider} from "../../config/firebase";
-import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"; 
+import { auth, googleProvider, db } from "../../config/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import './auth.scss';
+
+export const logout = async (navigate) => {
+    try {
+        await signOut(auth);
+        alert("You have been logged out.");
+        navigate('/'); // Navigate to the home page
+    } catch (error) {
+        console.error(error);
+        alert("Logout failed: " + error.message);
+    }
+};
+
+export const signInWithGoogle = async (navigate) => {
+    try {
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
+
+        // Check Firestore for existing user record
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+            // User record doesn't exist, create a new one
+            await setDoc(userRef, {
+                firstName: user.displayName.split(" ")[0],
+                lastName: user.displayName.split(" ")[1] || "",
+                email: user.email
+            });
+            console.log("New Google user saved in Firestore");
+        } else {
+            console.log("Existing Google user found in Firestore");
+        }
+
+        navigate('/translate');
+    } catch (error) {
+        console.error(error);
+        alert("Google sign-in failed: " + error.message);
+    }
+};
+
+
 
 export const Auth = () => {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
 
-    const signIn = async () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (user) {
+                navigate("/translate");
+            } else {
+                navigate("/");
+            }
+        });
+
+        return () => unsubscribe();
+    }, [navigate]);
+
+    const signUp = async () => {
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            await setDoc(doc(db, "users", userCredential.user.uid), {
+                firstName,
+                lastName,
+                email
+            });
+            navigate('/translate');
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
-    const signInWithGoogle = async () => {
+    const signInWithEmail = async () => {
         try {
-            await signInWithPopup(auth, googleProvider);   
+            await signInWithEmailAndPassword(auth, email, password);
+            navigate('/translate');
         } catch (error) {
             console.error(error);
+            alert("Sign in failed: " + error.message);
         }
-    }
-
-    const logout = async () => {
-        try {
-            await signOut(auth);   
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    };
+    
 
     return (
-        <div>
-            <input placeholder="email" onChange={(e) => setEmail(e.target.value)} type="email"></input>
-            <input placeholder="password" onChange={(e) => setPassword(e.target.value)} type="password"></input>
-            <Link onClick={signIn} to="/translate">Sign in</Link>
-            <button onClick={signInWithGoogle}>Sign in with Google</button>
-            <button onClick={logout}>Log out</button>
+        <div className="auth">
+            <div className="auth__signup">
+                <input className="auth__input" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} />
+                <input className="auth__input" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} />
+                <input className="auth__input" placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)} />
+                <input className="auth__input" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
+                <button className="auth__button" onClick={signUp}>Sign Up</button>
+            </div>
+            <div className="auth__signin">
+                <input className="auth__input" placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)} />
+                <input className="auth__input" placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
+                <button className="auth__button" onClick={() => signInWithEmail()}>Sign In</button>
+                <button className="auth__button auth__button--google" onClick={() => signInWithGoogle(navigate)}>Sign in with Google</button>
+            </div>
+            <button className="auth__button" onClick={() => logout(navigate)}>Log out</button>
         </div>
-    )
+    );
 }
