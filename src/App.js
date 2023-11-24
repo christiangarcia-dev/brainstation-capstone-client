@@ -5,9 +5,7 @@ import TranslatePage from './pages/TranslatePage/TranslatePage';
 import SavedConversationsPage from './pages/SavedConversationsPage/SavedConversationsPage';
 
 function App() {
-
   
-
   return (
     <BrowserRouter>
       <Routes>
