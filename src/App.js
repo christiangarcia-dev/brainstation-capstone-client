@@ -5,13 +5,13 @@ import TranslatePage from './pages/TranslatePage/TranslatePage';
 import SavedConversationsPage from './pages/SavedConversationsPage/SavedConversationsPage';
 
 function App() {
-  
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<LoginPage />}></Route>
         <Route path="/translate" element={<TranslatePage />}></Route>
-        <Route path="/saved"></Route>
+        <Route path="/saved" element={<SavedConversationsPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
