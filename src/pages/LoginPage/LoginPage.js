@@ -1,15 +1,20 @@
 import "./LoginPage.scss";
-import { Auth } from "../../components/auth/auth";
-import Header from "../../components/Header/Header";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import Logo from "../../assets/logo/echolingo-logo.png";
+import { Link } from "react-router-dom";
 
 function LoginPage() {
 
-    return(
-        <>
-            <Header />
-            <Auth />
-        </>
-    )
+    return (
+        <main className="login-page" alt="login page">
+            <div className="login-page__logo-container">
+                <img className="login-page__logo" src={Logo} alt="echolingo logo"></img>
+            </div>
+            <LoginForm />
+            <p className="login-page__or">- OR -</p>
+            <p className="login-page__cta">Create an account? <Link className="login-page__cta-signup" to="/signup">Sign-Up</Link></p>
+        </main>
+    );
 }
 
 export default LoginPage;
