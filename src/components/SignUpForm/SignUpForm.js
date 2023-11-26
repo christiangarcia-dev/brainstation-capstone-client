@@ -1,9 +1,10 @@
-// components/SignUpForm.js
+import "./SignUpForm.scss";
 import { auth, googleProvider, db } from "../../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import googleIcon from "../../assets/icons/google.svg";
 
 function SignUpForm() {
     const [email, setEmail] = useState('');
@@ -57,8 +58,10 @@ function SignUpForm() {
             <label className="signup-form__label" htmlFor="password">Password</label>
             <input className="signup-form__input" id="password" placeholder="Enter your Password here" type="password" onChange={(e) => setPassword(e.target.value)} />
 
+        
+            <button className="signup-form__button--google" onClick={handleGoogleSignUp}><span><img className="signup-form__button--google--icon" src={googleIcon}></img>Sign Up with Google</span></button>
+
             <button className="signup-form__button" onClick={handleSignUp}>Sign Up</button>
-            <button className="signup-form__button signup-form__button--google" onClick={handleGoogleSignUp}>Sign Up with Google</button>
         </div>
     );
 }
