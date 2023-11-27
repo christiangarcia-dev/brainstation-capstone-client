@@ -9,14 +9,90 @@
     align-items: center;
     margin-inline: 2rem;
 
+    @include tablet {
+        margin-inline: 7rem;
+    }
+
+    @include desktop {
+        flex-direction: row;
+        margin: 0;
+    }
+
+    &__header {
+        width: 100%;
+        margin-top: 1rem;
+
+        @include tablet {
+            display: flex;
+        }
+
+        @include desktop {
+            display: flex;
+            flex-direction: column;
+            margin-block: auto;
+        }
+
+        &--container {
+            display: flex;
+            width: 100%;
+
+            @include desktop {
+                height: 100vh;
+                width: 50%;
+            }
+        }
+
+        &--box {
+            display: none;
+
+            @include tablet {
+                display: block;
+                border-bottom: 1px solid $color-white;
+                width: 100%;
+                margin-bottom: 4.5rem;
+            }
+
+            @include desktop {
+                margin: 0;
+                border-bottom: none;
+                width: 50%;
+                height: 20vh;
+                // outline: 1px solid limegreen;
+                border-right: 1px solid $color-white;
+            }
+        }
+    }
+
     &__logo {
         width: 15rem;
-        margin-top: 1rem;
-        margin-bottom: -1rem;
+        z-index: 100;
+
+        @include tablet {
+            width: 16rem;
+        }
 
         &--container {
             width: min-content;
             margin-inline: auto;
+            display: flex;
+            justify-content: center;
+
+            @include tablet {
+                width: 11rem;
+            }
+        }
+    }
+
+    &__form--container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @include desktop {
+            background-color: $color-dark-gray;
+            height: 100vh;
+            padding-inline: 15%;
         }
     }
 
@@ -24,12 +100,14 @@
         color: $color-or;
         margin-bottom: 2rem;
         font-size: 1rem;
+        text-align: center;
     }
 
     &__cta {
         color: $color-cta;
         margin-bottom: 2rem;
         font-size: 1rem;
+        text-align: center;
 
         &--signup {
             text-decoration: none;
