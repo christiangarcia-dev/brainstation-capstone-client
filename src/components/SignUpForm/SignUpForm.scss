@@ -35,17 +35,26 @@
     &__button {
         font-size: 1rem;
         font-weight: 500;
-        width: 13.125rem;
+        min-width: 13.125rem;
+        width: 35%;
         height: 2.9rem;
+        margin-inline: auto;
+        margin-top: 4rem;
+        margin-bottom: 1.5rem;
         border-radius: 30px 20px;
         border: 1px solid #000;
         background: linear-gradient(180deg, #058DD3 0%, #00FEC9 100%);
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        margin-inline: auto;
-        margin-top: 3rem;
-        margin-bottom: 1.5rem;
         transition: background 0.8s ease, box-shadow 0.2s ease;
         cursor: pointer;
+
+        @include tablet {
+            margin-top: 4rem;
+        }
+
+        @include desktop {
+            border: none;
+        }
 
         &:hover {
             box-shadow: none;
@@ -55,9 +64,10 @@
         }
 
         &--google {
-            display: inline-flex;
-            justify-content: center;
+            display: flex;
+            width: 100%;
             align-items: center;
+            justify-content: center;
             position: relative;
             height: 2.6rem;
             padding: 0; 
@@ -68,6 +78,7 @@
             margin-top: 1rem;
             overflow: hidden; 
             cursor: pointer;
+            
 
             &:hover {
 
@@ -82,13 +93,8 @@
                 span {
                     background-image: linear-gradient(to right, $color-black, $color-black); // Change text gradient on hover
                 }
-
-                img {
-                    fill: black;
-                }
             }
             
-
             &::after {
                 content: '';
                 position: absolute;
@@ -102,24 +108,28 @@
                 transition: background-color 0.8s ease;
             }
 
+            div {
+                display: flex;
+                align-items: center;
+            }
 
             span {
+                display: flex;
+                align-items: center;
+                width: 100%;
                 position: relative;
                 z-index: 2;
                 background-image: $gradient-main;
                 -webkit-background-clip: text;
                 color: transparent;
-                display: inline; 
                 padding-bottom: 0.2rem;
                 transition: background-image 0.8s ease;
+                text-align: center;
+                justify-content: center;
             }
 
             img { 
-                position: relative;
-                left: -4.5rem;
-                top: 0.28rem;
-                z-index: 2;
-                transition: fill 0.8s ease;
+                padding-right: 0.75rem;
             }
         }
     }

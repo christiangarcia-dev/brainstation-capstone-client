@@ -59,7 +59,7 @@ function SignUpForm() {
             <input className="signup-form__input" id="password" placeholder="Enter your Password here" type="password" onChange={(e) => setPassword(e.target.value)} />
 
         
-            <button className="signup-form__button--google" onClick={handleGoogleSignUp}><span><img className="signup-form__button--google--icon" src={googleIcon}></img>Sign Up with Google</span></button>
+            <button className="signup-form__button--google" onClick={handleGoogleSignUp}><span><div className="signup-form__button--google--container"><img className="signup-form__button--google--icon" src={googleIcon}></img></div>Sign Up with Google</span></button>
 
             <button className="signup-form__button" onClick={handleSignUp}>Sign Up</button>
         </div>
