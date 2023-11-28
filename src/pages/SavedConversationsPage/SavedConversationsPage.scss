@@ -1,0 +1,36 @@
+// SavedConversationsPage.scss
+.saved-transcriptions {
+    background-color: black;
+    color: white;
+
+    &__title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    &__list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    &__item {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-bottom: 1px solid grey;
+    }
+
+    .transcription-details {
+        &__text {
+            margin-bottom: 10px;
+        }
+
+        &__timestamp {
+            font-size: 0.9em;
+            color: grey;
+        }
+    }
+
+    &__message {
+        text-align: center;
+    }
+}
