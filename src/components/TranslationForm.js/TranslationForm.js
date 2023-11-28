@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function TranslationForm() {
     const [inputText, setInputText] = useState('');
-    const [targetLanguage, setTargetLanguage] = useState('Spanish'); // Default language
+    const [targetLanguage, setTargetLanguage] = useState('Spanish'); 
     const [translatedText, setTranslatedText] = useState('');
 
     const handleTextChange = (event) => {
@@ -25,7 +25,6 @@ function TranslationForm() {
             setTranslatedText(response.data.translatedText);
         } catch (error) {
             console.error('Error translating text:', error);
-            // Handle errors appropriately
         }
     };
 
@@ -43,8 +42,8 @@ function TranslationForm() {
             </form>
             {translatedText && (
                 <div>
-                    <h3>Translated Text:</h3>
-                    <p>{translatedText}</p>
+                    <h3 className='translated-text'>Translated Text:</h3>
+                    <p className='translated-text'>{translatedText}</p>
                 </div>
             )}
         </div>

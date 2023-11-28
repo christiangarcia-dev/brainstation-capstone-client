@@ -2,5 +2,8 @@
 @use "../src/styles/partials/variables" as *;
 
 body {
-  background-color: $color-black;
+  background-image: url("../src/assets/images/black-design-background.png");
+  background-size: cover;
+  height: 100vh;
+  background-repeat: no-repeat;
 }

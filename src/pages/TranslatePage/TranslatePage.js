@@ -1,6 +1,4 @@
 import "./TranslatePage.scss";
-import axios from 'axios';
-import { useState } from "react";
 import FileUploadForm from "../../components/fileUploadForm/fileUploadForm";
 import TranslationForm from "../../components/TranslationForm.js/TranslationForm";
 import { Link } from "react-router-dom";
@@ -13,7 +11,7 @@ function TranslatePage() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        logout(navigate); // Pass navigate to the logout function
+        logout(navigate); 
     };
 
     return(
