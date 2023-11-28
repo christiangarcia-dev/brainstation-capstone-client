@@ -1,9 +1,10 @@
 import "./TranslatePage.scss";
-import FileUploadForm from "../../components/fileUploadForm/fileUploadForm";
 import TranslationForm from "../../components/TranslationForm.js/TranslationForm";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { logout } from '../../components/auth/auth';
+import NavSidebar from "../../components/NavSidebar/NavSidebar";
+
 
 
 function TranslatePage() {
@@ -15,11 +16,12 @@ function TranslatePage() {
     };
 
     return(
-        <>
-            <FileUploadForm />
+        <body>
+            <header>
+                <NavSidebar />
+            </header>
             <TranslationForm />
-            <button onClick={handleLogout}>Log out</button>
-        </>
+        </body>
     )
 }
 
