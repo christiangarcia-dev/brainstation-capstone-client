@@ -1,9 +1,12 @@
 // components/TranslationForm.js
 import "./TranslationForm.scss";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import { collection, addDoc } from 'firebase/firestore';
+import { auth, db } from '../../config/firebase';
 import caretIcon from "../../assets/icons/caret.svg";
 import micIcon from "../../assets/icons/microphone.svg";
+import stopIcon from "../../assets/icons/stop.svg";
 import TargetLanguageModal from "../TargetLanguageModal/TargetLanguageModal";
 
 function TranslationForm() {
@@ -12,6 +15,9 @@ function TranslationForm() {
     const [translatedText, setTranslatedText] = useState('');
     const [typingTimeout, setTypingTimeout] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+    const [mediaRecorder, setMediaRecorder] = useState(null);
+    const audioRef = useRef(null);
 
     const handleLanguageChange = (language) => {
         setTargetLanguage(language);
@@ -33,6 +39,57 @@ function TranslationForm() {
         }, 2000)); 
     };
 
+    const startRecording = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const recorder = new MediaRecorder(stream);
+            setMediaRecorder(recorder);
+            recorder.start();
+            setIsRecording(true);
+
+            recorder.ondataavailable = (event) => {
+                audioRef.current = event.data;
+            };
+        } catch (error) {
+            console.error('Error accessing microphone:', error);
+        }
+    };
+
+    const stopRecording = () => {
+        if (mediaRecorder) {
+            mediaRecorder.stop();
+            setIsRecording(false);
+            sendAudioToBackend(); 
+        }
+    };
+
+    const sendAudioToBackend = async () => {
+        if (audioRef.current) {
+            const audioBlob = new Blob([audioRef.current], { type: 'audio/wav' });
+            const audioFile = new File([audioBlob], 'recording.wav', { type: 'audio/wav' });
+    
+            const formData = new FormData();
+            formData.append('file', audioFile);
+    
+            try {
+                const response = await axios.post('http://localhost:8080/api/whisper/transcribe', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+                const transcription = response.data.text || 'Transcription not available';
+                setInputText(transcription);
+    
+                if (transcription.trim() !== '') {
+                    translateText(transcription.trim());
+                }
+            } catch (error) {
+                console.error('Error uploading file:', error);
+            }
+        }
+    };
+    
+
     const translateText = async (text) => {
         try {
             const response = await axios.post('http://localhost:8080/api/chatgpt/translate', {
@@ -42,6 +99,27 @@ function TranslationForm() {
             setTranslatedText(response.data.translatedText);
         } catch (error) {
             console.error('Error translating text:', error);
+        }
+    };
+
+    const handleSaveTranslation = async () => {
+        if (!auth.currentUser) {
+            console.log('User not logged in');
+            return;
+        }
+    
+        try {
+            await addDoc(collection(db, 'translations'), {
+                userId: auth.currentUser.uid,
+                originalText: inputText,
+                translatedText: translatedText,
+                targetLanguage: targetLanguage,
+                timestamp: new Date()
+            });
+    
+            console.log('Translation saved');
+        } catch (error) {
+            console.error('Error saving translation:', error);
         }
     };
 
@@ -67,12 +145,17 @@ function TranslationForm() {
                     <p className='controls__target-language--subtitle'>Translate to</p>
                     <p className='controls__target-language--value'>{targetLanguage} <img className='controls__target-language--icon' src={caretIcon}></img></p>
                 </div>
-                <div className='controls__microphone'> 
-                    <img className='controls__microphone--icon' src={micIcon}></img> 
+                <div className="controls__group">
+                    <div className="controls__stop" onClick={stopRecording}>
+                        <img className="controls__stop--icon" src={stopIcon}></img>
+                    </div>
+                    <div className='controls__microphone' onClick={startRecording}> 
+                        <img className='controls__microphone--icon' src={micIcon}></img> 
+                    </div>
                 </div>
             </section>
 
-            <button className='save-button'>Save</button>
+            <button className='save-button' onClick={handleSaveTranslation}>Save</button>
 
             <TargetLanguageModal 
                 isOpen={isModalOpen} 
