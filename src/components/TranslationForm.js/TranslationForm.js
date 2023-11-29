@@ -137,6 +137,20 @@ function TranslationForm() {
             console.error('Error saving translation:', error);
         }
     };
+
+    const handleTTS = async (text) => {
+        try {
+            const response = await axios.post('http://localhost:8080/api/tts/createspeech', { text });
+            const audioUrl = response.data.audio_url;
+            console.log("Audio URL:", audioUrl);
+    
+            const audio = new Audio(audioUrl);
+            audio.oncanplaythrough = () => audio.play(); 
+            audio.onerror = () => console.error("Error playing audio");
+        } catch (error) {
+            console.error('Error with TTS:', error);
+        }
+    };
     
 
     useEffect(() => {
@@ -150,27 +164,33 @@ function TranslationForm() {
             <section className='translate'>
                 <article className='translate__input'>
                     <textarea className='translate__input--value' value={inputText} onChange={handleTextChange} placeholder="Enter text to translate..." />
-                    <img className="translate__input--icon" src={playIcon}></img>
+                    <img className="translate__input--icon" src={playIcon} onClick={() => handleTTS(inputText)}></img>
                 </article>
                 <img className="translate__clear--icon" src={clearIcon}></img>
                 <article className='translate__output'>
                     <p className='translate__output--value'>{translatedText}</p>
-                    <img className="translate__output--icon" src={playIcon}></img>
+                    <img className="translate__output--icon" src={playIcon} onClick={() => handleTTS(translatedText)}></img>
                 </article>
             </section>
             <section className='controls'>
-                <div className='controls__target-language' onClick={toggleModal}>
-                    <p className='controls__target-language--subtitle'>Translate to</p>
-                    <p className='controls__target-language--value'>{targetLanguage} <img className='controls__target-language--icon' src={caretIcon}></img></p>
-                </div>
-                <div className="controls__group">
-                    <div className="controls__stop" onClick={stopRecording}>
-                        <img className="controls__stop--icon" src={stopIcon}></img>
+                <section className="controls__content">
+                    <div className='controls__target-language' onClick={toggleModal}>
+                        <p className='controls__target-language--subtitle'>Translate to</p>
+                        <p className='controls__target-language--value'>{targetLanguage} <img className='controls__target-language--icon' src={caretIcon}></img></p>
                     </div>
-                    <div className='controls__microphone' onClick={startRecording}> 
-                        <img className='controls__microphone--icon' src={micIcon}></img> 
+                    <div className="controls__group">
+                        <div className="controls__stop" onClick={stopRecording}>
+                            <div className="controls__stop--wrapper">
+                                <img className="controls__stop--icon" src={stopIcon}></img>
+                            </div>
+                        </div>
+                        <div className='controls__microphone' onClick={startRecording}> 
+                            <div className="controls__microphone--wrapper">
+                                <img className='controls__microphone--icon' src={micIcon}></img> 
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
             </section>
 
             <button className='save-button' onClick={handleSaveTranslation}>Save</button>
