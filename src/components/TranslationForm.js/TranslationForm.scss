@@ -14,6 +14,14 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
+    position: relative;
+
+    &__clear--icon {
+        position: absolute;
+        top: 14.35rem;
+        right: 1.84rem;
+        height: 1rem;
+    }
 
     &__input {
         background-color: $color-black;
@@ -21,11 +29,11 @@
         height: 50%;
         border-radius: 20px 20px 0 0;
         border-bottom: 0.5px solid $color-dark-gray;
+        display: flex;
 
         &::-webkit-scrollbar {
             display: none; 
         }
-
 
         &--value {
             color: $color-white;
@@ -35,7 +43,7 @@
             border-radius: 20px 20px 0 0;
             border: none;
             padding: 2rem;
-            width: 100%;
+            width: 87%;
             height: 100%;
 
             &::-webkit-scrollbar {
@@ -51,6 +59,13 @@
                 outline: none;
             }
         }
+
+        &--icon {
+            position: absolute;
+            height: 1rem;
+            right: 1.79rem;
+            top: 2.2rem;
+        }
     }
 
     &__output {
@@ -59,6 +74,7 @@
         height: 50%;
         border-radius: 0 0 20px 20px;
         overflow-y: auto;
+        display: flex;
 
         &::-webkit-scrollbar {
             display: none; 
@@ -72,7 +88,7 @@
             border-radius: 20px 20px 0 0;
             border: none;
             padding: 2rem;
-            width: 100%;
+            width: 87%;
             height: 100%;
             margin-bottom: 2rem;
             word-break: break-word;
@@ -81,6 +97,13 @@
             &::-webkit-scrollbar {
                 display: none; 
             }
+        }
+
+        &--icon {
+            position: absolute;
+            height: 1rem;
+            right: 1.79rem;
+            bottom: 2.2rem;
         }
     }
 }

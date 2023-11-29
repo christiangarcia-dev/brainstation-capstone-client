@@ -11,3 +11,9 @@
         @content;
     }
 }
+
+@mixin tall {
+    @media (min-height: 1200px) {
+        @content;
+    }
+}
