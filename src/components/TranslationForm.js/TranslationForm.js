@@ -2,11 +2,13 @@
 import "./TranslationForm.scss";
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, addDoc } from 'firebase/firestore';
 import { auth, db } from '../../config/firebase';
 import caretIcon from "../../assets/icons/caret.svg";
 import micIcon from "../../assets/icons/microphone.svg";
 import stopIcon from "../../assets/icons/stop.svg";
+import playIcon from "../../assets/icons/play.svg";
+import clearIcon from "../../assets/icons/clear.svg";
 import TargetLanguageModal from "../TargetLanguageModal/TargetLanguageModal";
 
 function TranslationForm() {
@@ -109,8 +111,21 @@ function TranslationForm() {
         }
     
         try {
+            
+            const userRef = doc(db, "users", auth.currentUser.uid);
+            const userDoc = await getDoc(userRef);
+    
+            if (!userDoc.exists()) {
+                console.log('No such user!');
+                return;
+            }
+    
+            const userData = userDoc.data();
+    
             await addDoc(collection(db, 'translations'), {
                 userId: auth.currentUser.uid,
+                firstName: userData.firstName,
+                lastName: userData.lastName,
                 originalText: inputText,
                 translatedText: translatedText,
                 targetLanguage: targetLanguage,
@@ -122,6 +137,7 @@ function TranslationForm() {
             console.error('Error saving translation:', error);
         }
     };
+    
 
     useEffect(() => {
         return () => {
@@ -134,12 +150,14 @@ function TranslationForm() {
             <section className='translate'>
                 <article className='translate__input'>
                     <textarea className='translate__input--value' value={inputText} onChange={handleTextChange} placeholder="Enter text to translate..." />
+                    <img className="translate__input--icon" src={playIcon}></img>
                 </article>
+                <img className="translate__clear--icon" src={clearIcon}></img>
                 <article className='translate__output'>
                     <p className='translate__output--value'>{translatedText}</p>
+                    <img className="translate__output--icon" src={playIcon}></img>
                 </article>
             </section>
-
             <section className='controls'>
                 <div className='controls__target-language' onClick={toggleModal}>
                     <p className='controls__target-language--subtitle'>Translate to</p>
