@@ -1,18 +1,27 @@
-import "./fileUploadForm.scss";
+import "./FileUploadForm.scss";
 import { auth, db } from '../../config/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { doc, getDoc } from 'firebase/firestore';
 import { Link } from "react-router-dom";
 import axios from 'axios';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function FileUploadForm() {
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [transcription, setTranscription] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(true);
+
+    useEffect(() => {
+        if (transcription) setIsModalOpen(false);
+    }, [transcription]);
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
+    };
+
+    const openModal = () => {
+        setIsModalOpen(true);
     };
 
     const handleSubmit = async (event) => {
@@ -80,23 +89,33 @@ function FileUploadForm() {
         }
     };
     
-    return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleFileChange} />
-                <button type="submit">Upload</button>
-            </form>
-            {transcription && (
-                <div>
-                    <h3>Transcription:</h3>
-                    <p>{transcription}</p>
-                    <button onClick={handleSaveTranscription}>Save Transcription</button>
+    return (
+        <div className="file-upload">
+            {isModalOpen && (
+                <div className="file-upload__modal">
+                    <div className="file-upload__modal__content">
+                        <h2 className="file-upload__modal__header">Upload an Audio File</h2>
+                        <p className="file-upload__modal__supported">Supported file types: </p>
+                        <p className="file-upload__modal__supported--values">mp3, mp4, mpeg, mpga, m4a, wav, and webm</p>
+                        <div className="file-upload__modal__buttons">
+                            <input type="file" onChange={handleFileChange} className="file-upload__modal__input" />
+                            <button className="file-upload__modal__upload" onClick={handleSubmit} disabled={!selectedFile}>Upload</button>
+                        </div>
+                    </div>
                 </div>
             )}
-            <Link to="/saved">View Transcripts</Link>
+            {transcription && (
+                <div className="file-upload__result">
+                    <h3 className="file-upload__result--header">Transcription:</h3>
+                    <p className="file-upload__result--value">{transcription}</p>
+                    <div className="file-upload__result--buttons">
+                        <button className="file-upload__result--save" onClick={handleSaveTranscription}>Save Transcription</button>
+                        <button className="file-upload__result--new" onClick={openModal}>Transcribe New File</button>
+                    </div>
+                </div>
+            )}
         </div>
-        
-    )
+    );
 }
 
 export default FileUploadForm;
