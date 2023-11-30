@@ -5,6 +5,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useState, useEffect } from "react";
+import closeModalIcon from "../../assets/icons/close-black.svg";
 
 function FileUploadForm() {
 
@@ -26,7 +27,7 @@ function FileUploadForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setTranscription(''); // Reset transcription on new submission
+        setTranscription(''); 
 
         if (!selectedFile) {
             alert('Please select a file to upload');
@@ -43,7 +44,6 @@ function FileUploadForm() {
                 },
             });
             console.log('Transcription:', response.data);
-            // Update the transcription state with the response
             setTranscription(response.data.text || 'Transcription not available');
         } catch (error) {
             console.error('Error uploading file:', error);
@@ -88,12 +88,18 @@ function FileUploadForm() {
             saveTranscriptionToFirestore(transcription);
         }
     };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+    
     
     return (
         <div className="file-upload">
             {isModalOpen && (
                 <div className="file-upload__modal">
                     <div className="file-upload__modal__content">
+                        <img className="file-upload__modal__close" src={closeModalIcon} onClick={handleCloseModal} alt="Close modal"></img>
                         <h2 className="file-upload__modal__header">Upload an Audio File</h2>
                         <p className="file-upload__modal__supported">Supported file types: </p>
                         <p className="file-upload__modal__supported--values">mp3, mp4, mpeg, mpga, m4a, wav, and webm</p>
