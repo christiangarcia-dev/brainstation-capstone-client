@@ -16,12 +16,15 @@ function TranslatePage() {
     };
 
     return(
-        <body>
+        <>
             <header>
                 <NavSidebar />
             </header>
-            <TranslationForm />
-        </body>
+            <main>
+                <TranslationForm />
+            </main>
+        </>
+        
     )
 }
 
