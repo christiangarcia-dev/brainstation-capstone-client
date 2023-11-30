@@ -1,4 +1,6 @@
-// SavedConversationsPage.scss
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
 .saved-transcriptions {
     background-color: black;
     color: white;
@@ -6,6 +8,47 @@
     &__title {
         text-align: center;
         margin-bottom: 20px;
+        padding-top: 2rem;
+    }
+
+    &__list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    &__item {
+        padding: 10px;
+        border-bottom: 1px solid grey;
+    }
+
+    .transcription-details {
+        padding-inline: 1rem;
+
+        &__text {
+            margin-bottom: 10px;
+        }
+
+        &__timestamp {
+            font-size: 0.9em;
+            color: grey;
+        }
+    }
+
+    &__message {
+        text-align: center;
+        padding-bottom: 3rem;
+    }
+}
+
+.saved-translations {
+    background-color: black;
+    color: white;
+    padding-bottom: 3rem; 
+
+    &__title {
+        text-align: center;
+        margin-bottom: 20px;
+        padding-top: 5rem;
     }
 
     &__list {
@@ -19,12 +62,25 @@
         border-bottom: 1px solid grey;
     }
 
-    .transcription-details {
-        &__text {
-            margin-bottom: 10px;
+    .translation-details {
+        padding-inline: 1rem;
+
+        &__original-text, &__translated-text {
+            
         }
 
-        &__timestamp {
+        &__arrows-icon {
+            height: 1.2rem;
+            margin-left: 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        &__target-language {
+            margin-top: 0.5rem;
+        }
+
+        &__timestamp, &__target-language {
             font-size: 0.9em;
             color: grey;
         }
@@ -34,3 +90,13 @@
         text-align: center;
     }
 }
+
+.translation-details__original-text,
+.translation-details__translated-text,
+.transcription-details__text {
+    &:hover {
+        color: $color-turqoise;
+        cursor: pointer;
+    }
+}
+
