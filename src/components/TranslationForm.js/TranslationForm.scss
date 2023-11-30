@@ -4,7 +4,11 @@
 .translate-container {
     display: flex;
     flex-direction: column;
-    margin-top: 7rem;
+    margin-top: 6rem;
+
+    @include tablet {
+        margin-top: 10rem;
+    }
 }
 
 .translate {
@@ -15,11 +19,27 @@
     flex-direction: column;
     position: relative;
 
+    @include tablet {
+        flex-direction: row;
+        margin-inline: 6rem;
+        height: 25rem;
+    }
+
+    @include desktop {
+        margin-inline: 12rem;
+    }
+
     &__clear--icon {
         position: absolute;
-        top: 14.35rem;
+        top: 14.45rem;
         right: 1.84rem;
         height: 1rem;
+        cursor: pointer;
+
+        @include tablet {
+            top: 2.1rem;
+            right: 4.5rem;
+        }
     }
 
     &__input {
@@ -29,6 +49,13 @@
         border-radius: 20px 20px 0 0;
         border-bottom: 0.5px solid $color-dark-gray;
         display: flex;
+
+        @include tablet {
+            height: 100%;
+            border-radius: 20px 0 0 20px;
+            border-bottom: none;
+            border-right: 0.5px solid $color-dark-gray;
+        }
 
         &::-webkit-scrollbar {
             display: none; 
@@ -44,6 +71,11 @@
             padding: 2rem;
             width: 87%;
             height: 100%;
+
+            @include tablet {
+                width: 100%;
+                padding-top: 5rem;
+            }
 
             &::-webkit-scrollbar {
                 display: none; 
@@ -64,6 +96,12 @@
             height: 1rem;
             right: 1.79rem;
             top: 2.2rem;
+            cursor: pointer;
+
+            @include tablet {
+                right: 0;
+                left: 1.79rem;
+            }
         }
     }
 
@@ -74,6 +112,11 @@
         border-radius: 0 0 20px 20px;
         overflow-y: auto;
         display: flex;
+
+        @include tablet {
+            height: 100%;
+            border-radius: 0 20px 20px 0;
+        }
 
         &::-webkit-scrollbar {
             display: none; 
@@ -93,6 +136,11 @@
             word-break: break-word;
             overflow-y: auto; 
 
+            @include tablet {
+                width: 100%;
+                padding-top: 5rem;
+            }
+
             &::-webkit-scrollbar {
                 display: none; 
             }
@@ -103,6 +151,12 @@
             height: 1rem;
             right: 1.79rem;
             bottom: 2.2rem;
+            cursor: pointer;
+
+            @include tablet {
+                bottom: 0;
+                top: 2.2rem;
+            }
         }
     }
 }
@@ -115,6 +169,14 @@
     border-radius: 20px; 
     margin-block: 2rem;
     background-color: $color-black;
+
+    @include tablet {
+        margin-inline: 6rem;
+    }
+
+    @include desktop {
+        margin-inline: 16rem;
+    }
 
     &__content {
         height: 100%;
@@ -217,7 +279,7 @@
     }
 }
 
-.translate, .controls, .save-button {
+.translate, .controls {
     position: relative;
     z-index: 1;
     background: $color-black;

@@ -31,6 +31,7 @@ function TranslationForm() {
 
     const handleTextChange = (event) => {
         setInputText(event.target.value);
+        setTranslatedText('');
         if (typingTimeout) {
             clearTimeout(typingTimeout);
         }
@@ -39,6 +40,11 @@ function TranslationForm() {
                 translateText(event.target.value.trim());
             }
         }, 2000)); 
+    };
+
+    const handleClearText = () => {
+        setInputText(''); 
+        setTranslatedText(''); 
     };
 
     const startRecording = async () => {
@@ -159,14 +165,20 @@ function TranslationForm() {
         };
     }, [typingTimeout]);
 
+    useEffect(() => {
+        if (inputText.trim() === '') {
+            setTranslatedText('');
+        }
+    }, [inputText]);
+
     return (
         <section className='translate-container'>
             <section className='translate'>
                 <article className='translate__input'>
-                    <textarea className='translate__input--value' value={inputText} onChange={handleTextChange} placeholder="Enter text to translate..." />
+                    <textarea className='translate__input--value' value={inputText} onChange={handleTextChange} placeholder="Type or speak to translate..." />
                     <img className="translate__input--icon" src={playIcon} onClick={() => handleTTS(inputText)}></img>
                 </article>
-                <img className="translate__clear--icon" src={clearIcon}></img>
+                <img className="translate__clear--icon" src={clearIcon} onClick={handleClearText}></img>
                 <article className='translate__output'>
                     <p className='translate__output--value'>{translatedText}</p>
                     <img className="translate__output--icon" src={playIcon} onClick={() => handleTTS(translatedText)}></img>

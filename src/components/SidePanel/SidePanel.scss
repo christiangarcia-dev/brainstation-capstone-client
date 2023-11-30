@@ -1,0 +1,60 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%; 
+    height: 100%;
+    -webkit-backdrop-filter: blur(28px) brightness(100%);
+    backdrop-filter: blur(28px) brightness(100%);
+    background-color: #ffffff29;
+    z-index: 1000;
+
+    &__close {
+        position: fixed;
+        right: 1rem;
+        top: 1rem;
+        height: 1.5rem;
+        cursor: pointer;
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 5rem;
+        gap: 1rem;
+        margin-right: 1.5rem;
+        width: 100%;
+    }
+
+    &__link {
+        margin-inline: 1.5rem;
+        text-decoration: none;
+        color: $color-black;
+        font-size: 1rem;
+        color: $color-white;
+        text-transform: uppercase;
+        border-bottom: 2px solid transparent;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        padding-left: 1rem;
+        cursor: pointer;
+
+        &:hover {
+            border-color: #8B8B8B;
+        }
+    }
+    
+}
+
+.side-panel__link.active {
+    font-weight: 600;
+    border-bottom: 2px solid $color-white;
+
+    &:hover {
+        border-color: $color-white;
+    }
+}
