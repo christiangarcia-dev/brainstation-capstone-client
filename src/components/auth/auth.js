@@ -82,6 +82,7 @@ export const Auth = () => {
     const signInWithEmail = async () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
+            alert("You have signed in.");
             navigate('/translate');
         } catch (error) {
             console.error(error);

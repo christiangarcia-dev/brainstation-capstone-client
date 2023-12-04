@@ -68,6 +68,7 @@ function TranslationForm() {
             mediaRecorder.stop();
             setIsRecording(false);
             sendAudioToBackend(); 
+            alert('Stopped recording');
         }
     };
 
@@ -139,6 +140,7 @@ function TranslationForm() {
             });
     
             console.log('Translation saved');
+            alert('Translation and transcription saved');
         } catch (error) {
             console.error('Error saving translation:', error);
         }
