@@ -42,13 +42,12 @@
 
             @include tablet {
                 padding-top: 3rem;
-                height: 42vh;
-                width: 80vw;
+                height: 30%;
+                width: 60%;
             }
 
             @include desktop {
-                width: 50vw;
-                height: 46vh;
+                width: 60%;
             }
         }
 
@@ -88,6 +87,10 @@
             width: 40%;
 
             @include tablet {
+                width: 30%;
+            }
+
+            @include desktop {
                 width: 20%;
             }
             
