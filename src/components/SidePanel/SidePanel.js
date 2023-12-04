@@ -5,9 +5,9 @@ import exitIcon from "../../assets/icons/exit.svg";
 import { logout } from "../Auth/Auth";
 
 function SidePanel({ isOpen, onClose }) {
-
     const navigate = useNavigate();
     const sidePanelRef = useRef();
+    const panelClasses = isOpen ? "side-panel open" : "side-panel";
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -19,10 +19,6 @@ function SidePanel({ isOpen, onClose }) {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [onClose]);
-    
-    if (!isOpen) {
-        return null;
-    }
 
     const handleLogout = () => {
         logout(navigate);
@@ -30,7 +26,7 @@ function SidePanel({ isOpen, onClose }) {
     };
 
     return (
-        <div className="side-panel" ref={sidePanelRef}>
+        <div className={panelClasses} ref={sidePanelRef}>
             <img className="side-panel__close" onClick={onClose} src={exitIcon} alt="Close"></img>
             <div className="side-panel__group">
                 <NavLink className="side-panel__link" activeClassName="side-panel__active" to="/translate">Translate</NavLink>
