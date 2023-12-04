@@ -40,6 +40,10 @@
             top: 2.1rem;
             right: 4.5rem;
         }
+
+        @include desktop {
+            right: 47.55rem;
+        }
     }
 
     &__input {
