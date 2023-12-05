@@ -42,13 +42,12 @@
 
             @include tablet {
                 padding-top: 3rem;
-                height: 42vh;
-                width: 80vw;
+                height: 30%;
+                width: 60%;
             }
 
             @include desktop {
-                width: 50vw;
-                height: 46vh;
+                width: 63%;
             }
         }
 
@@ -88,6 +87,10 @@
             width: 40%;
 
             @include tablet {
+                width: 30%;
+            }
+
+            @include desktop {
                 width: 20%;
             }
             
@@ -131,7 +134,7 @@
 
     &__result {
         background-color: $color-black;
-        margin-inline: 1rem;
+        margin-inline: 5rem;
         border-radius: 20px;
         margin-top: 6rem;
         padding-block: 2rem;
@@ -147,7 +150,7 @@
         }
 
         @include desktop {
-            margin-inline: 10rem;
+            margin-inline: 16rem;
             margin-top: 18rem;
         }
 
@@ -160,7 +163,7 @@
         &--value {
             color: $color-white;
             text-align: left;
-            padding-inline: 1rem;
+            padding-inline: 3rem;
 
             @include tablet {
                 padding-inline: 3rem;

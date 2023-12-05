@@ -4,13 +4,14 @@
 .side-panel {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -70%; 
     width: 70%; 
     height: 100%;
     -webkit-backdrop-filter: blur(28px) brightness(100%);
     backdrop-filter: blur(28px) brightness(100%);
     background-color: #ffffff29;
     z-index: 1000;
+    transition: right 0.5s ease-in-out;
 
     &__close {
         position: fixed;
@@ -57,4 +58,8 @@
     &:hover {
         border-color: $color-white;
     }
+}
+.side-panel.open {
+    right: 0;
+    z-index: 10;
 }

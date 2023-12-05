@@ -19,18 +19,57 @@
     &__item {
         padding: 10px;
         border-bottom: 1px solid grey;
+        padding-bottom: 1.2rem;
     }
 
     .transcription-details {
         padding-inline: 1rem;
+        margin-bottom: 1rem;
 
         &__text {
             margin-bottom: 10px;
+            padding-top: 2rem;
+        }
+
+        &__arrows-icon {
+            height: 1.2rem;
+            margin-left: 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        &__translated-text {
+            padding-bottom: 1rem;
         }
 
         &__timestamp {
             font-size: 0.9em;
             color: grey;
+        }
+
+        &__target-language {
+            margin-top: 0.5rem;
+            color: grey;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        &__language-toggle {
+            position: relative;
+            margin-left: 1rem;
+            background-color: transparent;
+            border: none;
+            color: $color-white;
+            font-size: 1rem;
+            cursor: pointer;
+
+            &--icon {
+                position: absolute;
+                top: 0.15rem;
+                margin-left: 0.5rem;
+                rotate: 270deg;
+                height: 1.2rem;
+            }
         }
     }
 
@@ -48,7 +87,7 @@
     &__title {
         text-align: center;
         margin-bottom: 20px;
-        padding-top: 5rem;
+        padding-top: 8rem;
     }
 
     &__list {
@@ -60,6 +99,7 @@
         margin-bottom: 15px;
         padding: 10px;
         border-bottom: 1px solid grey;
+        padding-bottom: 1.2rem;
     }
 
     .translation-details {
@@ -67,6 +107,10 @@
 
         &__original-text, &__translated-text {
             
+        }
+
+        &__translated-text {
+            padding-bottom: 1rem;
         }
 
         &__arrows-icon {
@@ -93,7 +137,8 @@
 
 .translation-details__original-text,
 .translation-details__translated-text,
-.transcription-details__text {
+.transcription-details__text,
+.transcription-details__translated-text {
     &:hover {
         color: $color-turqoise;
         cursor: pointer;

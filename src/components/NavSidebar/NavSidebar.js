@@ -13,7 +13,7 @@ function NavSidebar() {
 
     return (
         <>
-            <nav className="ellipsis" onClick={togglePanel}>
+            <nav className={`ellipsis ${isPanelOpen ? 'hidden' : ''}`} onClick={togglePanel}>
                 <img className="ellipsis__icon" src={ellipsisIcon} alt="Menu"></img>
             </nav>
             <SidePanel isOpen={isPanelOpen} onClose={togglePanel} />
