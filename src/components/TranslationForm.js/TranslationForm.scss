@@ -29,7 +29,7 @@
         margin-inline: 12rem;
     }
 
-    &__clear--icon {
+    &__clear--icon1 {
         position: absolute;
         top: 14.45rem;
         right: 1.84rem;
@@ -37,8 +37,18 @@
         cursor: pointer;
 
         @include tablet {
-            top: 4.5rem;
-            right: 32.6px;
+            display: none;
+        }
+    }
+
+    &__clear--icon2 {
+        display: none;
+
+        @include tablet {
+            display: flex;
+            margin-right: 1.5rem;
+            height: 1.1rem;
+            cursor: pointer; 
         }
     }
 
@@ -204,6 +214,10 @@
             display: flex;
             align-items: center;
             cursor: pointer;
+
+            &:hover {
+                font-weight: 600;
+            }
         }
 
         &--icon {
@@ -217,6 +231,18 @@
     &__group {
         display: flex;
         margin-left: auto;
+        align-items: center;
+
+        &--clear-container {
+            display: none;
+
+            @include tablet {
+                display: block;
+                border-right: 1px solid $color-white;
+                height: 1.2rem;
+                margin-right: 1.5rem;
+            }
+        }
     }
 
     &__microphone, &__stop {
