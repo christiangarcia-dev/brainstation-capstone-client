@@ -37,12 +37,8 @@
         cursor: pointer;
 
         @include tablet {
-            top: 2.1rem;
-            right: 4.5rem;
-        }
-
-        @include desktop {
-            right: 47.55rem;
+            top: 4.5rem;
+            right: 32px;
         }
     }
 
