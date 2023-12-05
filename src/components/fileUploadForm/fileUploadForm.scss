@@ -47,7 +47,7 @@
             }
 
             @include desktop {
-                width: 60%;
+                width: 63%;
             }
         }
 
@@ -134,7 +134,7 @@
 
     &__result {
         background-color: $color-black;
-        margin-inline: 1rem;
+        margin-inline: 5rem;
         border-radius: 20px;
         margin-top: 6rem;
         padding-block: 2rem;
@@ -150,7 +150,7 @@
         }
 
         @include desktop {
-            margin-inline: 10rem;
+            margin-inline: 16rem;
             margin-top: 18rem;
         }
 
@@ -163,7 +163,7 @@
         &--value {
             color: $color-white;
             text-align: left;
-            padding-inline: 1rem;
+            padding-inline: 3rem;
 
             @include tablet {
                 padding-inline: 3rem;
