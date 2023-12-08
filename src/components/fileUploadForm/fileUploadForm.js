@@ -54,7 +54,6 @@ function FileUploadForm() {
     const saveTranscriptionToFirestore = async (transcription) => {
         if (auth.currentUser) {
             try {
-                // Fetch the user's details
                 const userRef = doc(db, "users", auth.currentUser.uid);
                 const userDoc = await getDoc(userRef);
     
@@ -95,32 +94,47 @@ function FileUploadForm() {
     
     
     return (
-        <div className="file-upload">
-            {isModalOpen && (
-                <div className="file-upload__modal">
-                    <div className="file-upload__modal__content">
-                        <img className="file-upload__modal__close" src={closeModalIcon} onClick={handleCloseModal} alt="Close modal"></img>
-                        <h2 className="file-upload__modal__header">Upload an Audio File</h2>
-                        <p className="file-upload__modal__supported">Supported file types: </p>
-                        <p className="file-upload__modal__supported--values">mp3, mp4, mpeg, mpga, m4a, wav, and webm</p>
-                        <div className="file-upload__modal__buttons">
-                            <input type="file" onChange={handleFileChange} className="file-upload__modal__input" />
-                            <button className="file-upload__modal__upload" onClick={handleSubmit} disabled={!selectedFile}>Upload</button>
-                        </div>
-                    </div>
-                </div>
-            )}
-            {transcription && (
-                <div className="file-upload__result">
-                    <h3 className="file-upload__result--header">Transcription:</h3>
-                    <p className="file-upload__result--value">{transcription}</p>
-                    <div className="file-upload__result--buttons">
-                        <button className="file-upload__result--save" onClick={handleSaveTranscription}>Save Transcription</button>
-                        <button className="file-upload__result--new" onClick={openModal}>Transcribe New File</button>
-                    </div>
-                </div>
-            )}
-        </div>
+        // <div className="file-upload">
+        //     {isModalOpen && (
+        //         <div className="file-upload__modal">
+        //             <div className="file-upload__modal__content">
+        //                 <img className="file-upload__modal__close" src={closeModalIcon} onClick={handleCloseModal} alt="Close modal"></img>
+        //                 <h2 className="file-upload__modal__header">Upload an Audio File</h2>
+        //                 <p className="file-upload__modal__supported">Supported file types: </p>
+        //                 <p className="file-upload__modal__supported--values">mp3, mp4, mpeg, mpga, m4a, wav, and webm</p>
+        //                 <div className="file-upload__modal__buttons">
+        //                     <input type="file" onChange={handleFileChange} className="file-upload__modal__input" />
+        //                     <button className="file-upload__modal__upload" onClick={handleSubmit} disabled={!selectedFile}>Upload</button>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     )}
+        //     {transcription && (
+        //         <div className="file-upload__result">
+        //             <h3 className="file-upload__result--header">Transcription:</h3>
+        //             <p className="file-upload__result--value">{transcription}</p>
+        //             <div className="file-upload__result--buttons">
+        //                 <button className="file-upload__result--save" onClick={handleSaveTranscription}>Save Transcription</button>
+        //                 <button className="file-upload__result--new" onClick={openModal}>Transcribe New File</button>
+        //             </div>
+        //         </div>
+        //     )}
+        // </div>
+        
+        <section className="upload">
+            <div className="upload__header">
+                <img className="upload__header--icon"></img>
+                <h2 className="upload__header--text">Upload your file</h2>
+            </div>
+            <article className="upload__drag">
+                <h3 className="upload__drag--header">Drag & Drop</h3>
+                <p className="upload__drag--supported">Supported format files</p>
+                <p className="upload__drag--filetypes">mp3, mp4, mpeg, mpga, m4a, wav, and webm</p>
+                <img className="upload__drag--icon"></img>
+                <button className="upload__drag--file-btn">Choose File</button>
+            </article>
+        </section>
+    
     );
 }
 

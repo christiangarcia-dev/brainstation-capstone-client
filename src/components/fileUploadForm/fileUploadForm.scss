@@ -1,204 +1,223 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.file-upload {
+// .file-upload {
 
-    &__modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(0, 0, 0, 0.8); 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+//     &__modal {
+//         position: fixed;
+//         top: 0;
+//         left: 0;
+//         width: 100%;
+//         height: 100%;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         background-color: rgba(0, 0, 0, 0.8); 
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: center;
 
-        &__close {
-            position: fixed;
-            right: 1rem;
-            top: 1rem;
-            height: 1.5rem;
-            cursor: pointer;
+//         &__close {
+//             position: fixed;
+//             right: 1rem;
+//             top: 1rem;
+//             height: 1.5rem;
+//             cursor: pointer;
 
-            @include tablet {
-                position: absolute;
-                right: 1.5rem;
-            }
-        }
+//             @include tablet {
+//                 position: absolute;
+//                 right: 1.5rem;
+//             }
+//         }
 
-        &__content {
-            position: relative;
-            height: 100vh;
-            width: 100vw;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+//         &__content {
+//             position: relative;
+//             height: 100vh;
+//             width: 100vw;
+//             padding: 20px;
+//             background-color: white;
+//             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+//             text-align: center;
 
-            @include tablet {
-                padding-top: 3rem;
-                height: 30%;
-                width: 60%;
-            }
+//             @include tablet {
+//                 padding-top: 3rem;
+//                 height: 30%;
+//                 width: 60%;
+//             }
 
-            @include desktop {
-                width: 63%;
-            }
-        }
+//             @include desktop {
+//                 width: 63%;
+//             }
+//         }
 
-        &__header {
-            margin-block: 1rem;
-            margin-top: 3rem;
+//         &__header {
+//             margin-block: 1rem;
+//             margin-top: 3rem;
 
-            @include tablet {
-                margin-top: 0;;
-            }
-        }
+//             @include tablet {
+//                 margin-top: 0;;
+//             }
+//         }
 
-        &__supported {
+//         &__supported {
 
-            font-weight: 400;
+//             font-weight: 400;
 
-            &--values {
-                font-size: 0.85rem;
-                font-weight: 600;
-                width: 50%;
-                margin-top: 0.5rem;
-                margin-bottom: 2rem;
-                margin-inline: auto;
-            }
-        }
+//             &--values {
+//                 font-size: 0.85rem;
+//                 font-weight: 600;
+//                 width: 50%;
+//                 margin-top: 0.5rem;
+//                 margin-bottom: 2rem;
+//                 margin-inline: auto;
+//             }
+//         }
 
-        &__buttons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-            margin-inline: auto;
-        }
+//         &__buttons {
+//             display: flex;
+//             align-items: center;
+//             justify-content: center;
+//             gap: 0.3rem;
+//             margin-inline: auto;
+//         }
 
-        &__input {
-            cursor: pointer;
-            width: 40%;
+//         &__input {
+//             cursor: pointer;
+//             width: 40%;
 
-            @include tablet {
-                width: 30%;
-            }
+//             @include tablet {
+//                 width: 30%;
+//             }
 
-            @include desktop {
-                width: 20%;
-            }
+//             @include desktop {
+//                 width: 20%;
+//             }
             
-            &[type="file"] {
-                &::file-selector-button {
-                    background: $color-blue; 
-                    color: $color-black; 
-                    border: none;
-                    padding: 0.7rem 0.9rem;
-                    border-radius: 20px;
-                    cursor: pointer;
-                    display: flex;
-                    margin-bottom: 1rem;
-                    font-weight: 600;
+//             &[type="file"] {
+//                 &::file-selector-button {
+//                     background: $color-blue; 
+//                     color: $color-black; 
+//                     border: none;
+//                     padding: 0.7rem 0.9rem;
+//                     border-radius: 20px;
+//                     cursor: pointer;
+//                     display: flex;
+//                     margin-bottom: 1rem;
+//                     font-weight: 600;
 
 
-                    &:hover {
-                        background-color: $color-black;
-                        color: $color-white; 
-                    }
-                }
-            }
-        }
+//                     &:hover {
+//                         background-color: $color-black;
+//                         color: $color-white; 
+//                     }
+//                 }
+//             }
+//         }
 
-        &__upload {
-            padding: 0.55rem 1.9rem;
-            background-color: $color-black;
-            color: $color-white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            align-self: start;
-            font-weight: 600;
+//         &__upload {
+//             padding: 0.55rem 1.9rem;
+//             background-color: $color-black;
+//             color: $color-white;
+//             border: none;
+//             border-radius: 20px;
+//             cursor: pointer;
+//             align-self: start;
+//             font-weight: 600;
 
-            &:disabled {
-                background-color: grey;
-                color: $color-black;
-            }
-        }
-    }
+//             &:disabled {
+//                 background-color: grey;
+//                 color: $color-black;
+//             }
+//         }
+//     }
 
-    &__result {
-        background-color: $color-black;
-        margin-inline: 5rem;
-        border-radius: 20px;
-        margin-top: 6rem;
-        padding-block: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid $color-white;
+//     &__result {
+//         background-color: $color-black;
+//         margin-inline: 5rem;
+//         border-radius: 20px;
+//         margin-top: 6rem;
+//         padding-block: 2rem;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: center;
+//         border: 1px solid $color-white;
 
-        @include tablet {
-            margin-inline: 8rem;
-            margin-top: 12rem;
-        }
+//         @include tablet {
+//             margin-inline: 8rem;
+//             margin-top: 12rem;
+//         }
 
-        @include desktop {
-            margin-inline: 16rem;
-            margin-top: 18rem;
-        }
+//         @include desktop {
+//             margin-inline: 16rem;
+//             margin-top: 18rem;
+//         }
 
-        &--header {
-            color: $color-white;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
+//         &--header {
+//             color: $color-white;
+//             font-weight: 600;
+//             margin-bottom: 1rem;
+//         }
 
-        &--value {
-            color: $color-white;
-            text-align: left;
-            padding-inline: 3rem;
+//         &--value {
+//             color: $color-white;
+//             text-align: left;
+//             padding-inline: 3rem;
 
-            @include tablet {
-                padding-inline: 3rem;
-            }
-        }
+//             @include tablet {
+//                 padding-inline: 3rem;
+//             }
+//         }
 
-        &--buttons {
-            margin-top: 2rem;
-            margin-inline: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+//         &--buttons {
+//             margin-top: 2rem;
+//             margin-inline: 1rem;
+//             display: flex;
+//             align-items: center;
+//             justify-content: center;
+//         }
 
-        &--save, &--new {
-            border: 1px solid $color-white;
-            background-color: $color-black;
-            color: $color-white;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
+//         &--save, &--new {
+//             border: 1px solid $color-white;
+//             background-color: $color-black;
+//             color: $color-white;
+//             padding: 0.5rem 1rem;
+//             cursor: pointer;
 
-            &:hover {
-                background-color: $color-white;
-                color: $color-black;
-            }
-        }
+//             &:hover {
+//                 background-color: $color-white;
+//                 color: $color-black;
+//             }
+//         }
 
-        &--save {
-            border-radius: 20px 0 0 20px;
-            border-right: none;
-        }
+//         &--save {
+//             border-radius: 20px 0 0 20px;
+//             border-right: none;
+//         }
 
-        &--new {
-            border-radius: 0px 20px 20px 0;
-            border-left: 1px solid $color-white;
-        }
-    }
+//         &--new {
+//             border-radius: 0px 20px 20px 0;
+//             border-left: 1px solid $color-white;
+//         }
+//     }
+// }
+
+.upload {
+    margin-top: 7rem;
+    // position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $color-white;
+    border: 1px solid $color-white;
+    border-radius: 20px;
+    width: 80%;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
