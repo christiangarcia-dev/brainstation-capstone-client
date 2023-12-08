@@ -219,6 +219,16 @@
     align-items: center;
     padding-bottom: 2.3rem;
 
+    @include tablet {
+        width: 60%;
+        margin-top: 12rem;
+    }
+
+    @include desktop {
+        width: 50%;
+        max-width: 45rem;
+    }
+
     &__header {
         display: flex;
         flex-direction: column;
@@ -277,14 +287,19 @@
             background-color: #058DD3;
             border: 1px solid #058DD3;
             border-radius: 4px;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
+            font-weight: 500;
             color: $color-white;
             text-transform: uppercase;
             text-align: center;
-            min-width: 60%;
-            width: 3rem;
-            padding: 0.3rem 0.7rem;
+            width: 60%;
+            // width: 3rem;
+            padding: 0.28rem 0.7rem;
             cursor: hover;
+            
+            @include large-mobile {
+                width: 40%;
+            }
         }
     }
 }
