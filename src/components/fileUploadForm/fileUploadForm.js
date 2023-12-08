@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useState, useEffect } from "react";
 import closeModalIcon from "../../assets/icons/close-black.svg";
+import uploadCloudIcon from "../../assets/icons/upload.svg";
+import audioFileIcon from "../../assets/icons/audio-file.svg";
 
 function FileUploadForm() {
 
@@ -123,14 +125,14 @@ function FileUploadForm() {
         
         <section className="upload">
             <div className="upload__header">
-                <img className="upload__header--icon"></img>
+                <img className="upload__header--icon" src={uploadCloudIcon}></img>
                 <h2 className="upload__header--text">Upload your file</h2>
             </div>
             <article className="upload__drag">
                 <h3 className="upload__drag--header">Drag & Drop</h3>
                 <p className="upload__drag--supported">Supported format files</p>
                 <p className="upload__drag--filetypes">mp3, mp4, mpeg, mpga, m4a, wav, and webm</p>
-                <img className="upload__drag--icon"></img>
+                <img className="upload__drag--icon" src={audioFileIcon}></img>
                 <button className="upload__drag--file-btn">Choose File</button>
             </article>
         </section>
