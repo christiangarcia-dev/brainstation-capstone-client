@@ -44,8 +44,13 @@ function SignUpForm() {
         }
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault(); 
+        await handleSignUp();
+    };
+
     return (
-        <div className="signup-form">
+        <form className="signup-form" onSubmit={handleSubmit}>
             <label className="signup-form__label" htmlFor="firstName">First Name</label>
             <input className="signup-form__input" id="firstName" placeholder="Enter your First Name here" onChange={(e) => setFirstName(e.target.value)} />
 
@@ -61,8 +66,8 @@ function SignUpForm() {
         
             <button className="signup-form__button--google" onClick={handleGoogleSignUp}><span><div className="signup-form__button--google--container"><img className="signup-form__button--google--icon" src={googleIcon}></img></div>Sign Up with Google</span></button>
 
-            <button className="signup-form__button" onClick={handleSignUp}>Sign Up</button>
-        </div>
+            <button className="signup-form__button" onClick={handleSignUp} type="submit">Sign Up</button>
+        </form>
     );
 }
 
