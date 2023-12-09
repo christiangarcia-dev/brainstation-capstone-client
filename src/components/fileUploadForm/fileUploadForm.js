@@ -7,7 +7,7 @@ import uploadCloudIcon from "../../assets/icons/upload.svg";
 import audioFileIcon from "../../assets/icons/audio-file.svg";
 import "./FileUploadForm.scss";
 
-function FileUploadForm() {
+function FileUploadForm({isSidebarOpen}) {
     const [selectedFile, setSelectedFile] = useState(null);
     const [transcription, setTranscription] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(true);
@@ -82,13 +82,14 @@ function FileUploadForm() {
     const handleSaveTranscription = () => saveTranscriptionToFirestore();
     const handleCloseModal = () => setIsModalOpen(false);
     const openModal = () => setIsModalOpen(true); 
+    const modalClass = isSidebarOpen ? "upload dimmed" : "upload";
 
     return (
         <>
             {isModalOpen && (
                 <>
                     <div className="overlay"></div>
-                    <section className="upload">
+                    <section className={modalClass}>
                         <img className="upload__close" src={closeModalIcon} onClick={handleCloseModal} alt="Close Modal" />
                         <div className="upload__header">
                             <img className="upload__header--icon" src={uploadCloudIcon} alt="Upload Icon" />

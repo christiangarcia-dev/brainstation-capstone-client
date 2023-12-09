@@ -4,11 +4,12 @@ import "./NavSidebar.scss";
 import ellipsisIcon from "../../assets/icons/ellipsis.svg";
 import SidePanel from "../SidePanel/SidePanel";
 
-function NavSidebar() {
+function NavSidebar({ onSidebarToggle }) {
     const [isPanelOpen, setIsPanelOpen] = useState(false);
 
     const togglePanel = () => {
         setIsPanelOpen(!isPanelOpen);
+        onSidebarToggle && onSidebarToggle(!isPanelOpen);
     };
 
     return (
