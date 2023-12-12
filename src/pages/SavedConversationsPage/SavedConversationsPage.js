@@ -103,7 +103,7 @@ function SavedConversationsPage() {
                                 <li key={translation.id} className="saved-translations__item">
                                     <div className="translation-details">
                                         <p onClick={() => handleTTS(translation.originalText)} className="translation-details__original-text">{translation.originalText}</p>
-                                        <img  className="translation-details__arrows-icon" src={arrowsIcon}></img>
+                                        <img  className="translation-details__arrows-icon" src={arrowsIcon} alt="translation details icon"></img>
                                         <p onClick={() => handleTTS(translation.translatedText)} className="translation-details__translated-text">{translation.translatedText}</p>
                                         <p className="translation-details__timestamp">{new Date(translation.timestamp.seconds * 1000).toLocaleString()}</p>
                                         <p className="translation-details__target-language">{translation.targetLanguage}</p>
@@ -126,7 +126,7 @@ function SavedConversationsPage() {
                                         <p className="transcription-details__text" onClick={() => handleTTS(transcript.text)}>
                                             {transcript.text}
                                         </p>
-                                        <img  className="transcription-details__arrows-icon" src={arrowsIcon}></img>
+                                        <img  className="transcription-details__arrows-icon" src={arrowsIcon} alt="transcription details arrow icon"></img>
                                         {translatedTexts[transcript.id] && (  
                                             <p className="transcription-details__translated-text" onClick={() => handleTTS(translatedTexts[transcript.id])}>
                                                 {translatedTexts[transcript.id]}
@@ -140,7 +140,7 @@ function SavedConversationsPage() {
                                         </p>
                                     </div>
                                     <button onClick={() => handleTranslate(transcript.id)} className="transcription-details__language-toggle">
-                                        Translate<img className="transcription-details__language-toggle--icon" src={caretIcon}></img>
+                                        Translate<img className="transcription-details__language-toggle--icon" src={caretIcon} alt="language toggle icon"></img>
                                     </button>
                                 </li>
                             ))}

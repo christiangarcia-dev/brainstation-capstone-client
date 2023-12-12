@@ -176,22 +176,22 @@ function TranslationForm() {
             <section className='translate'>
                 <article className='translate__input'>
                     <textarea className='translate__input--value' value={inputText} onChange={handleTextChange} placeholder="Type or speak to translate..." />
-                    <img className="translate__input--icon" src={playIcon} onClick={() => handleTTS(inputText)}></img>
+                    <img className="translate__input--icon" src={playIcon} onClick={() => handleTTS(inputText)} alt="translate input icon"></img>
                 </article>
-                <img className="translate__clear--icon1" src={clearIcon} onClick={handleClearText}></img>
+                <img className="translate__clear--icon1" src={clearIcon} onClick={handleClearText} alt="translate clear icon"></img>
                 <article className='translate__output'>
                     <p className='translate__output--value'>{translatedText}</p>
-                    <img className="translate__output--icon" src={playIcon} onClick={() => handleTTS(translatedText)}></img>
+                    <img className="translate__output--icon" src={playIcon} onClick={() => handleTTS(translatedText)} alt="transalte output icon"></img>
                 </article>
             </section>
             <section className='controls'>
                 <section className="controls__content">
                     <div className='controls__target-language' onClick={toggleModal}>
                         <p className='controls__target-language--subtitle'>Translate to</p>
-                        <p className='controls__target-language--value'>{targetLanguage} <img className='controls__target-language--icon' src={caretIcon}></img></p>
+                        <p className='controls__target-language--value'>{targetLanguage} <img className='controls__target-language--icon' src={caretIcon} alt="target language icon"></img></p>
                     </div>
                     <div className="controls__group">
-                        <div className="controls__group--clear-container"><img className="translate__clear--icon2" src={clearIcon} onClick={handleClearText}></img></div>
+                        <div className="controls__group--clear-container"><img className="translate__clear--icon2" src={clearIcon} onClick={handleClearText} alt="clear dashboard icon"></img></div>
                         <div className="controls__stop" onClick={stopRecording} onMouseEnter={() => setIsStopHovered(true)} onMouseLeave={() => setIsStopHovered(false)}>
                             <div className="controls__stop--wrapper">
                                 <svg className="controls__stop--icon" height="18" width="14" viewBox="0 0 384 512">
