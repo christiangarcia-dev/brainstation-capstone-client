@@ -1,8 +1,7 @@
 import "./TranslatePage.scss";
 import TranslationForm from "../../components/TranslationForm.js/TranslationForm";
 import { useNavigate } from "react-router-dom";
-// import { logout } from '../../components/Auth/Auth';
-import { logout } from "../../components/auth/auth";
+import { logout } from '../../components/Auth/Auth';
 import NavSidebar from "../../components/NavSidebar/NavSidebar";
 
 
