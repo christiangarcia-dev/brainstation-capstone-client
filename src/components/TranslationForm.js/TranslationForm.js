@@ -80,7 +80,7 @@ function TranslationForm() {
         formData.append('file', audioFile);
 
         try {
-            const response = await axios.post('http://localhost:8080/api/whisper/transcribe', formData, {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/whisper/transcribe`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -99,7 +99,7 @@ function TranslationForm() {
 
     const translateText = async (text) => {
         try {
-            const response = await axios.post('http://localhost:8080/api/chatgpt/translate', {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/chatgpt/translate`, {
                 text: text,
                 targetLanguage: targetLanguage,
             });
@@ -146,7 +146,7 @@ function TranslationForm() {
 
     const handleTTS = async (text) => {
         try {
-            const response = await axios.post('http://localhost:8080/api/tts/createspeech', { text });
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/tts/createspeech`, { text });
             const audioUrl = response.data.audio_url;
             console.log("Audio URL:", audioUrl);
     

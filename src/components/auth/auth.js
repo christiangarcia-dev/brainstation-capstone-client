@@ -43,8 +43,6 @@ export const signInWithGoogle = async (navigate) => {
     }
 };
 
-
-
 export const Auth = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
