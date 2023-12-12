@@ -5,8 +5,6 @@ import axios from 'axios';
 import { collection, doc, getDoc, addDoc } from 'firebase/firestore';
 import { auth, db } from '../../config/firebase';
 import caretIcon from "../../assets/icons/caret.svg";
-import micIcon from "../../assets/icons/microphone.svg";
-import stopIcon from "../../assets/icons/stop.svg";
 import playIcon from "../../assets/icons/play.svg";
 import clearIcon from "../../assets/icons/clear.svg";
 
