@@ -19,16 +19,21 @@ function LoginForm() {
         }
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault(); 
+        await handleLogin();
+    };
+
     return (
-        <div className="login-form">
+        <form className="login-form" onSubmit={handleSubmit}>
             <label className="login-form__label" htmlFor="email">Email</label>
             <input className="login-form__input" id="email" placeholder="Enter your Email here" type="email" onChange={(e) => setEmail(e.target.value)} />
 
             <label className="login-form__label" htmlFor="password">Password</label>
             <input className="login-form__input" id="password" placeholder="Enter your Password here" type="password" onChange={(e) => setPassword(e.target.value)} />
 
-            <button className="login-form__button" onClick={handleLogin}>Login</button>
-        </div>
+            <button className="login-form__button" onClick={handleLogin} type="submit">Login</button>
+        </form>
     );
 }
 

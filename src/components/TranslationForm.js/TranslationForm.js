@@ -5,8 +5,6 @@ import axios from 'axios';
 import { collection, doc, getDoc, addDoc } from 'firebase/firestore';
 import { auth, db } from '../../config/firebase';
 import caretIcon from "../../assets/icons/caret.svg";
-import micIcon from "../../assets/icons/microphone.svg";
-import stopIcon from "../../assets/icons/stop.svg";
 import playIcon from "../../assets/icons/play.svg";
 import clearIcon from "../../assets/icons/clear.svg";
 import TargetLanguageModal from "../TargetLanguageModal/TargetLanguageModal";
@@ -67,36 +65,34 @@ function TranslationForm() {
 
     const stopRecording = () => {
         if (mediaRecorder) {
+            mediaRecorder.onstop = async () => {
+                const audioBlob = new Blob([audioRef.current], { type: 'audio/wav' });
+                const audioFile = new File([audioBlob], 'recording.wav', { type: 'audio/wav' });
+                await sendAudioToBackend(audioFile);
+            };
             mediaRecorder.stop();
             setIsRecording(false);
-            sendAudioToBackend(); 
-            alert('Stopped recording');
         }
     };
 
-    const sendAudioToBackend = async () => {
-        if (audioRef.current) {
-            const audioBlob = new Blob([audioRef.current], { type: 'audio/wav' });
-            const audioFile = new File([audioBlob], 'recording.wav', { type: 'audio/wav' });
-    
-            const formData = new FormData();
-            formData.append('file', audioFile);
-    
-            try {
-                const response = await axios.post('http://localhost:8080/api/whisper/transcribe', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                });
-                const transcription = response.data.text || 'Transcription not available';
-                setInputText(transcription);
-    
-                if (transcription.trim() !== '') {
-                    translateText(transcription.trim());
-                }
-            } catch (error) {
-                console.error('Error uploading file:', error);
+    const sendAudioToBackend = async (audioFile) => {
+        const formData = new FormData();
+        formData.append('file', audioFile);
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/whisper/transcribe', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            const transcription = response.data.text || 'Transcription not available';
+            setInputText(transcription);
+
+            if (transcription.trim() !== '') {
+                translateText(transcription.trim());
             }
+        } catch (error) {
+            console.error('Error uploading file:', error);
         }
     };
     

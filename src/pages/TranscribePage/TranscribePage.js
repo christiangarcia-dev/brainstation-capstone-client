@@ -1,16 +1,19 @@
 import "./TranscribePage.scss";
+import { useState } from "react";
 import NavSidebar from "../../components/NavSidebar/NavSidebar";
 import FileUploadForm from "../../components/FileUploadForm/FileUploadForm"; 
 
 function TranscribePage() {
 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
     return(
         <>
             <header>
-                <NavSidebar />
+                <NavSidebar onSidebarToggle={setIsSidebarOpen} />
             </header>    
             <main>
-                <FileUploadForm />
+                <FileUploadForm isSidebarOpen={isSidebarOpen} />
             </main>
         </>
     )
