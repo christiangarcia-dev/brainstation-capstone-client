@@ -68,36 +68,34 @@ function TranslationForm() {
 
     const stopRecording = () => {
         if (mediaRecorder) {
+            mediaRecorder.onstop = async () => {
+                const audioBlob = new Blob([audioRef.current], { type: 'audio/wav' });
+                const audioFile = new File([audioBlob], 'recording.wav', { type: 'audio/wav' });
+                await sendAudioToBackend(audioFile);
+            };
             mediaRecorder.stop();
             setIsRecording(false);
-            sendAudioToBackend(); 
-            alert('Stopped recording');
         }
     };
 
-    const sendAudioToBackend = async () => {
-        if (audioRef.current) {
-            const audioBlob = new Blob([audioRef.current], { type: 'audio/wav' });
-            const audioFile = new File([audioBlob], 'recording.wav', { type: 'audio/wav' });
-    
-            const formData = new FormData();
-            formData.append('file', audioFile);
-    
-            try {
-                const response = await axios.post('http://localhost:8080/api/whisper/transcribe', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                });
-                const transcription = response.data.text || 'Transcription not available';
-                setInputText(transcription);
-    
-                if (transcription.trim() !== '') {
-                    translateText(transcription.trim());
-                }
-            } catch (error) {
-                console.error('Error uploading file:', error);
+    const sendAudioToBackend = async (audioFile) => {
+        const formData = new FormData();
+        formData.append('file', audioFile);
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/whisper/transcribe', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            const transcription = response.data.text || 'Transcription not available';
+            setInputText(transcription);
+
+            if (transcription.trim() !== '') {
+                translateText(transcription.trim());
             }
+        } catch (error) {
+            console.error('Error uploading file:', error);
         }
     };
     
