@@ -158,7 +158,6 @@ function TranslationForm() {
         }
     };
     
-
     useEffect(() => {
         return () => {
             if (typingTimeout) clearTimeout(typingTimeout);
@@ -176,12 +175,12 @@ function TranslationForm() {
             <section className='translate'>
                 <article className='translate__input'>
                     <textarea className='translate__input--value' value={inputText} onChange={handleTextChange} placeholder="Type or speak to translate..." />
-                    <img className="translate__input--icon" src={playIcon} onClick={() => handleTTS(inputText)} alt="translate input icon"></img>
+                    <img className="translate__input--icon" src={playIcon} onClick={() => handleTTS(inputText)} alt="text to speech for input icon"></img>
                 </article>
                 <img className="translate__clear--icon1" src={clearIcon} onClick={handleClearText} alt="translate clear icon"></img>
                 <article className='translate__output'>
                     <p className='translate__output--value'>{translatedText}</p>
-                    <img className="translate__output--icon" src={playIcon} onClick={() => handleTTS(translatedText)} alt="transalte output icon"></img>
+                    <img className="translate__output--icon" src={playIcon} onClick={() => handleTTS(translatedText)} alt="text to speech for output icon"></img>
                 </article>
             </section>
             <section className='controls'>

@@ -54,7 +54,7 @@ function SavedConversationsPage() {
 
     const handleTTS = async (text) => {
         try {
-            const response = await axios.post('http://localhost:8080/api/tts/createspeech', { text });
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/tts/createspeech`, { text });
             const audioUrl = response.data.audio_url;
             const audio = new Audio(audioUrl);
 
@@ -74,7 +74,7 @@ function SavedConversationsPage() {
     const handleLanguageSelect = async (language) => {
         if (selectedTranscription) {
             try {
-                const response = await axios.post('http://localhost:8080/api/chatgpt/translate', {
+                const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/chatgpt/translate`, {
                     text: selectedTranscription.text,
                     targetLanguage: language,
                 });
