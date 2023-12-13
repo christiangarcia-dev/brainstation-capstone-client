@@ -21,12 +21,13 @@
 
     @include tablet {
         width: 60%;
-        margin-top: 12rem;
+        margin-top: 15%;
     }
 
     @include desktop {
         width: 50%;
         max-width: 45rem;
+        margin-top: 10%;
     }
 
     &__close {

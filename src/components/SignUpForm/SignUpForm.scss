@@ -7,6 +7,10 @@
     justify-content: center;
     width: 100%;
 
+    @include desktop {
+        margin-top: 5vh;
+    }
+
     &__label {
         color: $color-label;
     }

@@ -5,11 +5,16 @@
 body {
   background-image: url("../src/assets/images/black-design-background.png");
   background-size: cover;
-  height: 100vh;
+  height: 100%;
   background-repeat: no-repeat;
   background-position: center;
 
   @include tall {
     background-repeat:repeat;
   }
+}
+
+main {
+  min-height: 100vh;
+  
 }
